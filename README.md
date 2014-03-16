@@ -32,7 +32,7 @@ You can define multiple marks in same place, and showmakrs plugin even provide y
 
 So I change the mark define behavior in showmarks plugin, now if you define mark "a" in place1, and then when you define mark "b" in same place, it will occupy the place by taking mark "a" off.  So you will have only one mark in one place.
 
-## My settings in vimrc
+## Recommended .vimrc settings
 
 Here is my settings of ShowMarks in my vimrc file:
 
@@ -46,7 +46,13 @@ let showmarks_ignore_type = "hqm"
 " Hilight lower & upper marks
 let showmarks_hlline_lower = 1
 let showmarks_hlline_upper = 0 
+```
 
+## Recommended highlights
+
+**exlightgray**
+
+```vim
 " highlights 
 " For marks a-z
 hi clear ShowMarksHLl
@@ -61,6 +67,8 @@ hi ShowMarksHLo term=bold cterm=bold ctermbg=LightYellow ctermfg=DarkYellow gui=
 hi clear ShowMarksHLm
 hi ShowMarksHLm term=bold cterm=none ctermbg=LightBlue gui=none guibg=SlateBlue
 ```
+
+**solarized**
 
 ## Reference
 
