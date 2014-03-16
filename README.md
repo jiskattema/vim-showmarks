@@ -5,10 +5,10 @@ Marks are useful for jumping back and forth between interesting points in a buff
 It can be toggled on and off and individual marks can be hidden(effectively removing them).
 
 By default the following keymappings are defined:
-   \mt : Toggles ShowMarks on and off.
-   \mh : Hides an individual mark.
-   \ma : Hides all marks in the current buffer.
-   \mm : Places the next available mark.
+- \mt : Toggles ShowMarks on and off.
+- \mh : Hides an individual mark.
+- \ma : Hides all marks in the current buffer.
+- \mm : Places the next available mark.
 
 ShowMarks requires that Vim is compiled with the +signs feature.
 
@@ -36,8 +36,7 @@ So I change the mark define behavior in showmarks plugin, now if you define mark
 
 Here is my settings of ShowMarks in my vimrc file:
 
-{% highlight vim %}
-
+```vim
 let g:showmarks_enable = 1
 let showmarks_include = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
 
@@ -61,8 +60,7 @@ hi ShowMarksHLo term=bold cterm=bold ctermbg=LightYellow ctermfg=DarkYellow gui=
 " For multiple marks on the same line.
 hi clear ShowMarksHLm
 hi ShowMarksHLm term=bold cterm=none ctermbg=LightBlue gui=none guibg=SlateBlue
-
-{% endhighlight %}
+```
 
 ## Reference
 
