@@ -70,6 +70,26 @@ hi ShowMarksHLm term=bold cterm=none ctermbg=LightBlue gui=none guibg=SlateBlue
 
 **solarized**
 
+```vim
+if &background == "light"
+    " For marks a-z
+    hi clear ShowMarksHLl
+    hi ShowMarksHLl term=bold cterm=none ctermbg=grey gui=none guibg=grey
+
+    " For marks A-Z
+    hi clear ShowMarksHLu
+    hi ShowMarksHLu term=bold cterm=bold ctermbg=lightred ctermfg=darkred gui=bold guibg=lightred guifg=darkred
+else
+    " For marks a-z
+    hi clear ShowMarksHLl
+    hi ShowMarksHLl term=bold cterm=none ctermbg=lightblue gui=none guibg=#eee8d5
+
+    " For marks A-Z
+    hi clear ShowMarksHLu
+    hi ShowMarksHLu term=bold cterm=bold ctermbg=lightred ctermfg=darkred gui=bold guibg=lightred guifg=darkred
+endif
+```
+
 ## Reference
 
 * [ShowMarks on vim.org](http://www.vim.org/scripts/script.php?script_id=152)
