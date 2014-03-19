@@ -1,4 +1,4 @@
-## Intro
+# Intro
 
 ShowMarks provides a visual representation of the location marks.
 Marks are useful for jumping back and forth between interesting points in a buffer, but can be hard to keep track of without any way to see where you have placed them.  ShowMarks hopefully makes life easier by placing a sign in the leftmost column of the buffer.  The sign indicates the label of the mark and its location.
@@ -11,6 +11,36 @@ By default the following keymappings are defined:
 - \mm : Places the next available mark.
 
 ShowMarks requires that Vim is compiled with the +signs feature.
+
+## Requirements
+
+- Vim 6.0 or higher.
+
+## Installation
+
+This plugin follows the standard runtime path structure, and as such it can 
+be installed with a variety of plugin managers:
+    
+To install using [Vundle](https://github.com/gmarik/vundle):
+
+    # add this line to your .vimrc file
+    Bundle 'exvim/ex_showmarks'
+
+To install using [Pathogen](https://github.com/tpope/vim-pathogen):
+
+    cd ~/.vim/bundle
+    git clone https://github.com/exvim/ex_showmarks
+
+To install using [NeoBundle](https://github.com/Shougo/neobundle.vim):
+
+    # add this line to your .vimrc file
+    NeoBundle 'exvim/ex_showmarks'
+
+[Download zip file](https://github.com/exvim/ex_showmarks/archive/master.zip):
+
+    cd ~/.vim
+    unzip ex_showmarks-master.zip
+    copy all of the files into your ~/.vim directory
 
 ## What I changed
 
