@@ -24,22 +24,22 @@ be installed with a variety of plugin managers:
 To install using [Vundle](https://github.com/gmarik/vundle):
 
     # add this line to your .vimrc file
-    Bundle 'exvim/ex_showmarks'
+    Bundle 'exvim/ex-showmarks'
 
 To install using [Pathogen](https://github.com/tpope/vim-pathogen):
 
     cd ~/.vim/bundle
-    git clone https://github.com/exvim/ex_showmarks
+    git clone https://github.com/exvim/ex-showmarks
 
 To install using [NeoBundle](https://github.com/Shougo/neobundle.vim):
 
     # add this line to your .vimrc file
-    NeoBundle 'exvim/ex_showmarks'
+    NeoBundle 'exvim/ex-showmarks'
 
-[Download zip file](https://github.com/exvim/ex_showmarks/archive/master.zip):
+[Download zip file](https://github.com/exvim/ex-showmarks/archive/master.zip):
 
     cd ~/.vim
-    unzip ex_showmarks-master.zip
+    unzip ex-showmarks-master.zip
     copy all of the files into your ~/.vim directory
 
 ## What I changed
