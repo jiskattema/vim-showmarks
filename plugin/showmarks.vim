@@ -3,8 +3,9 @@
 " Description:   Visually displays the location of marks.
 " Authors:       Anthony Kruize <trandor@labyrinth.net.au>
 "                Michael Geddes <michaelrgeddes@optushome.com.au>
-" Version:       2.2
-" Modified:      17 August 2004
+"                Jisk Attema <jiskattema@gmail.com>
+" Version:       2.2-1
+" Modified:      22 September 2022
 " License:       Released into the public domain.
 " ChangeLog:     See :help showmarks-changelog
 "
@@ -47,7 +48,9 @@
 "                   A maximum of two characters can be displayed. To include
 "                   the mark in the text use a tab(\t) character. A single
 "                   character will display as the mark with the character
-"                   suffixed (same as "\t<character>")
+"                   suffixed (same as "\t<character>").
+"                   When set to \"unicode\", use prettier unicode character
+"                   to display marks.
 "                   Examples:
 "                    To display the mark with a > suffixed:
 "                      let g:showmarks_textlower="\t>"
@@ -57,6 +60,8 @@
 "                      let g:showmarks_textlower="(\t"
 "                    To display two > characters:
 "                      let g:showmarks_textlower=">>"
+"                    To display unicode symbols like ⓐ :
+"                      let g:showmakrs_textlower="unicode"
 "                showmarks_textupper (Default: ">")
 "                   Same as above but for the marks A-Z.
 "                   Example: let g:showmarks_textupper="**"
@@ -117,6 +122,35 @@ if !exists('g:showmarks_hlline_other') | let g:showmarks_hlline_other = "0"  | e
 " possible mark (not just those specified in the possibly user-supplied list
 " of marks to show -- it can be changed on-the-fly).
 let s:all_marks = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789.'`^<>[]{}()\""
+
+let g:unicodemarks = {
+	\	'a': 'ⓐ',  'A': 'Ⓐ',
+	\	'b': 'ⓑ',  'B': 'Ⓑ',
+	\	'c': 'ⓒ',  'C': 'Ⓒ',
+	\	'd': 'ⓓ',  'D': 'Ⓓ',
+	\	'e': 'ⓔ',  'E': 'Ⓔ',
+	\	'f': 'ⓕ',  'F': 'Ⓕ',
+	\	'g': 'ⓖ',  'G': 'Ⓖ',
+	\	'h': 'ⓗ',  'H': 'Ⓗ',
+	\	'i': 'ⓘ',  'I': 'Ⓘ',
+	\	'j': 'ⓙ',  'J': 'Ⓙ',
+	\	'k': 'ⓚ',  'K': 'Ⓚ',
+	\	'l': 'ⓛ',  'L': 'Ⓛ',
+	\	'm': 'ⓜ',  'M': 'Ⓜ',
+	\	'n': 'ⓝ',  'N': 'Ⓝ',
+	\	'o': 'ⓞ',  'O': 'Ⓞ',
+	\	'p': 'ⓟ',  'P': 'Ⓟ',
+	\	'q': 'ⓠ',  'Q': 'Ⓠ',
+	\	'r': 'ⓡ',  'R': 'Ⓡ',
+	\	's': 'ⓢ',  'S': 'Ⓢ',
+	\	't': 'ⓣ',  'T': 'Ⓣ',
+	\	'u': 'ⓤ',  'U': 'Ⓤ',
+	\	'v': 'ⓥ',  'V': 'Ⓥ',
+	\	'w': 'ⓦ',  'W': 'Ⓦ',
+	\	'x': 'ⓧ',  'X': 'Ⓧ',
+	\	'y': 'ⓨ',  'Y': 'Ⓨ',
+	\	'z': 'ⓩ',  'Z': 'Ⓩ'
+	\	}
 
 " Commands
 com! -nargs=0 ShowMarksToggle    :call <sid>ShowMarksToggle()
@@ -240,10 +274,12 @@ endf
 " Default to ">" if it is found to be invalid.
 fun! s:VerifyText(which)
 	if strlen(g:showmarks_text{a:which}) == 0 || strlen(g:showmarks_text{a:which}) > 2
-		echohl ErrorMsg
-		echo "ShowMarks: text".a:which." must contain only 1 or 2 characters."
-		echohl None
-		let g:showmarks_text{a:which}=">"
+		if g:showmarks_text{a:which} != "unicode"
+			echohl ErrorMsg
+			echo "ShowMarks: text".a:which." must contain only 1 or 2 characters, or be \"unicode\"."
+			echohl None
+			let g:showmarks_text{a:which}=">"
+		endif
 	endif
 endf
 
@@ -277,6 +313,8 @@ fun! s:ShowMarksSetup()
 				else
 					let text=g:showmarks_textlower
 				endif
+			elseif g:showmarks_textlower == 'unicode'
+				let text = get(g:unicodemarks, c, c)
 			endif
 			let s:ShowMarksDLink{nm} = 'ShowMarksHLl'
 			if g:showmarks_hlline_lower == 1
@@ -295,6 +333,8 @@ fun! s:ShowMarksSetup()
 				else
 					let text=g:showmarks_textupper
 				endif
+			elseif g:showmarks_textupper == 'unicode'
+				let text = get(g:unicodemarks, c, c)
 			endif
 			let s:ShowMarksDLink{nm} = 'ShowMarksHLu'
 			if g:showmarks_hlline_upper == 1
@@ -313,6 +353,8 @@ fun! s:ShowMarksSetup()
 				else
 					let text=g:showmarks_textother
 				endif
+			elseif g:showmarks_textother == 'unicode'
+				let text = get(g:unicodemarks, c, c)
 			endif
 			let s:ShowMarksDLink{nm} = 'ShowMarksHLo'
 			if g:showmarks_hlline_other == 1
